@@ -40,8 +40,8 @@ def plot_countries(countries, data):
     # 그래프 설정
     ax1.grid()
     ax2.grid()
-    ax1.legend(fontsize=10, loc='upper left')
-    ax2.legend(fontsize=10, loc='upper left')
+    # ax1.legend(fontsize=10, loc='upper left')
+    # ax2.legend(fontsize=10, loc='upper left')
     plt.xticks(rotation=90)
 
     # 두 subplot의 x축 공유
