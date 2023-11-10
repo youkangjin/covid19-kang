@@ -16,7 +16,10 @@ const MainMenu = () => {
         <source src={video} type='video/mp4' />
       </video>
       <h1 className={MainMenuCss.h1}>
-      Covid-19 감염 현황
+      Development of COVID-19 reinfection rate
+      </h1>
+      <h1 className={MainMenuCss.h2}>
+      Covid-19 국내외 재감염률 개발
       </h1>
       <div className={MainMenuCss.frame}>
         <button className={`${MainMenuCss.button} ${MainMenuCss["custom-btn"]} ${MainMenuCss["btn-2"]}`}onClick={CovidLiveClick}>Covid-19 Live</button>

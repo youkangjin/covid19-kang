@@ -7,7 +7,9 @@ const SelectedItem = ({ setSelected, selected, resultRef }) => {
       .filter((ref) => ref && ref.childNodes[0] && ref.childNodes[0].checked && ref.childNodes[0].id !== 'selectAll') // Exclude the "selectAll" checkbox
       .map((ref) => ref.childNodes[1].textContent);
 
-    const updateSelected = [...selected, ...checkedLabels];
+    const updateSelected = selected.filter(
+      (item) => !checkedLabels.includes(item)
+    );
     setSelected(updateSelected);
 
     // 체크박스 선택 해제
