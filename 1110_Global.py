@@ -1,4 +1,4 @@
-import pandas as pd
+iimport pandas as pd
 import matplotlib.pyplot as plt
 
 # 한글 깨짐 방지
@@ -12,16 +12,39 @@ def plot_countries(countries, data):
     df = pd.read_csv(data)
     df["date"] = pd.to_datetime(df["date"])
 
-    plt.figure(figsize=(20, 10))
-    plt.title("실시간 나라별 코로나 그래프", fontsize=15)
+    fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)  # 그래프 두 개를 한 figure 내에 그리기
+    fig.subplots_adjust(hspace=0.05)  # 두 그래프 사이의 상하 간격 설정
+
+    ax1.set_ylim(80000000, 1e8)  # 윗 부분 y축 범위 설정
+    ax2.set_ylim(0, 10000000)  # 아랫 부분 y축 범위 설정
+    
+    # 그래프 경계선 제거
+    ax1.spines['bottom'].set_visible(False)
+    ax2.spines['top'].set_visible(False)
+    ax1.xaxis.tick_top()
+    ax1.tick_params(labeltop=False)
+    ax2.xaxis.tick_bottom()
 
     for spot_ in countries:
-        d_ = df[(df["location"] == spot_) & (df["date"].dt.month == 9)]
-        plt.plot(d_["date"], d_["total_cases"], "-", label=str(spot_), alpha=.6)
+        d_ = df[(df["location"] == spot_) & (df['date'].dt.month % 6 == 0) & (df["date"].dt.day == 15)]
+        ax1.plot(d_["date"], d_["total_cases"], "-", label=str(spot_), alpha=0.6)
+        ax2.plot(d_["date"], d_["total_cases"], "-", label=str(spot_), alpha=0.6)
 
-    plt.grid()
-    plt.legend(fontsize=10, loc='upper left')
+    # 물결선 효과 마커 설정
+    marker_style = dict(marker=[(-1, -0.5), (1, 0.5)], markersize=12,
+                       linestyle="none", color='k', mec='k', mew=1, clip_on=False)
+
+    # 상단 subplot에 물결선 효과 마커 표시
+    ax1.plot([], [], **marker_style, label="Wave Marker")
+
+    # 그래프 설정
+    ax1.grid()
+    ax2.grid()
+    ax1.legend(fontsize=10, loc='upper left')
+    ax2.legend(fontsize=10, loc='upper left')
     plt.xticks(rotation=90)
+
+    # 두 subplot의 x축 공유
     plt.show()
 
 
