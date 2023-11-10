@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React,{ useState, useEffect } from "react";
+import React,{ useState, useEffect,Component } from "react";
 import { useMediaQuery } from 'react-responsive';
 import { BsBatteryFull,BsBatteryHalf, BsBattery} from 'react-icons/bs';
 import { BiSolidAmbulance } from 'react-icons/bi';
@@ -9,9 +9,10 @@ import img2 from "./img/image2.png";
 import img3 from "./img/image3.png";
 import img4 from "./img/image4.png";
 import img5 from "./img/image5.png";
-
+import axios from 'axios';
 
   function App() {
+    
     const backgroundArr = [img1, img2, img3, img4, img5];
     let randomIndex = localStorage.getItem('backgroundIndex');
 
@@ -40,10 +41,34 @@ import img5 from "./img/image5.png";
     
 
     const [time, setTime] = useState(new Date());
+    const [data, setDate] = useState({})
     useEffect(() => {
 
+      const apiUrl = ' https://api.corona-19.kr/korea/?serviceKey=cQXvdqNL2Uh6KnGisxEkto598VDTaBHpl';
+      const apiKey = 'cQXvdqNL2Uh6KnGisxEkto598VDTaBHpl';
       // 1초마다 데이터 업데이트
+      const fetchData = async () => {
+        try{
+          const response =await axios.get(apiUrl,{   
+            headers: {
+              Authorization: `Bearer ${apiKey}`,
+            },
+          },
+          );
+          setDate(response.data);
+        }  catch (error){
+          if (error.response){
+            console.error('API Error Response:', error.response.data);
+          } else if (error.request){
+            console.error('No response received:', error.request);
+          } else{
+            console.error('Error:', error.message);
+          }
+        }
+      };
+      fetchData();
       const intervalId = setInterval(() => {
+        fetchData();
         setTime(new Date());
       }, 1000);
 
@@ -75,26 +100,26 @@ import img5 from "./img/image5.png";
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div className='App' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div className='center'>0</div>
+              <div className='center'>{data.korea}</div>
               <div className='center_down'>입원</div>
               <span style={{ marginTop: '200px' }}></span>
             </div>
             <span style={{ marginLeft: '130px' }}></span>
             <div className='App' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className='center'>0</div>
+            <div className='center'>{data.total}</div>
             <div className='center_down'>입원</div>
               <span style={{ marginTop: '200px' }}></span>
             </div>
             <span style={{ marginLeft: '130px' }}></span>
             <div className='App' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className='center'>0</div>
-              <div className='center_down'>입원</div>
+            <div className='center'>{data.chuncheon}</div>
+              <div className='center_down'>안녕</div>
               <span style={{ marginTop: '200px' }}></span>
             </div>
             <span style={{ marginLeft: '130px' }}></span>
             <div className='App' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <div className='center'>0</div>
-            <div className='center_down'>입원</div>
+            <div className='center'>{data.seoul}</div>
+            <div className='center_down'>확진</div>
               <span style={{ marginTop: '200px' }}></span>
               
             </div>
