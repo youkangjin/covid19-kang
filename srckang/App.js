@@ -22,7 +22,7 @@ import axios from 'axios';
     }
     
     const backgroundImg = backgroundArr[randomIndex];
-    const appStyle ={
+    const appStyle ={ 
       backgroundImage: `url(${backgroundImg})`,
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
@@ -79,7 +79,9 @@ import axios from 'axios';
         <div style={appStyle}>
           <div className='clock'>
           <div className='App'>
-            신종 코로나 바이러스
+            <div className='App text-animation'>
+              신종코로나바이러스
+            </div>
           <div className='App'>
             실시간 현황 🚑
             <h1 style={clockStyle}>

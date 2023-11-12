@@ -1,4 +1,5 @@
 .App {
+    white-space: pre-line;
     text-align: center;
     font-size: 80px;
     font-family: "twaysky";
@@ -67,5 +68,19 @@
       transform: rotate(360deg);
     }
   }
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
   
+  .text-animation {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 3s steps(30, end) infinite;
+    white-space: pre-line;
+  }
   

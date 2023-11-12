@@ -67,4 +67,33 @@ img {
     transform: rotate(360deg);
   }
 }
-  
+.animated-text span {
+  display: inline-block;
+  animation: fadeInUp 0.5s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.text-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(30, end) infinite;
+}
