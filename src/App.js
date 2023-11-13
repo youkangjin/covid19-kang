@@ -3,7 +3,7 @@ import React, {  useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Live from './live';
 import MainMenu from "./mainPage/MainMenu";
-import CovidWorld from "./components/CovidWorld";
+import CovidWorld from "./graphPage/components/CovidWorld";
 import LivePage from "./livePage/LivePage";
 function App() {
     return (

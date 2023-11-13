@@ -38,39 +38,32 @@ import img5 from "./img/image5.png";
     const today = new Date();
     const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
     
-    const [time, setTime] = useState(new Date());
-    const [data, setDate] = useState({})
-    const [animatedText, setAnimatedText] = useState("");
-    const [textIndex, setTextIndex] = useState(0);
-    const textArray = "신종코로나바이러스\n현재현황".split("");
 
+    const [time, setTime] = useState(new Date());
     useEffect(() => {
 
       // 1초마다 데이터 업데이트
       const intervalId = setInterval(() => {
         setTime(new Date());
-        if (textIndex < textArray.length) {
-          setAnimatedText((prevText) => prevText + textArray[textIndex]);
-          setTextIndex((prevIndex) => prevIndex + 1);
-        }
-      },200);
+      }, 1000);
 
       return () => clearInterval(intervalId);
-    }, [textIndex]); //인자는 함수와 배열 2개, []에 들어있는 값이 변경되면 자동으로 브라우저가 랜더링
+    }, []); //인자는 함수와 배열 2개, []에 들어있는 값이 변경되면 자동으로 브라우저가 랜더링
     const hPntCnt = "id";
     return (
         <div className={LiveCss}>
         <div style={appStyle}>
           <div className='clock'>
           <div className={LiveCss.App}>
-            <div className='App text-animation'>
-              {animatedText}
-            </div>
+            신종 코로나 바이러스
+          <div className={LiveCss.App}>
+            실시간 현황 🚑
             <h1 style={clockStyle}>
               마지막 업데이트: 
               <day>{formattedDate}</day>
               <span>{time.toLocaleTimeString()}</span>
             </h1>
+            </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <BsBatteryFull size={100} color='white' />
@@ -84,7 +77,7 @@ import img5 from "./img/image5.png";
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div className={LiveCss.App} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div className={LiveCss.center}>0</div>
-              <div className={LiveCss.center_down}>아니1</div>
+              <div className={LiveCss.center_down}>입원</div>
               <span style={{ marginTop: '200px' }}></span>
             </div>
             <span style={{ marginLeft: '130px' }}></span>
@@ -104,12 +97,12 @@ import img5 from "./img/image5.png";
             <div className={LiveCss.center}>0</div>
             <div className={LiveCss.center_down}>입원</div>
               <span style={{ marginTop: '200px' }}></span>
-            </div>  
+              
             </div>
             </div>      
           </div>
           </div>
-        
+        </div>
   );
 }
 
