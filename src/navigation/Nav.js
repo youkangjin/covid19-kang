@@ -1,7 +1,7 @@
-
+import NavCss from './Nav.module.css';
 import { useEffect, useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Nav.css'
+
 
 function Nav() {
 
@@ -95,15 +95,16 @@ function Nav() {
   
 
   return (
-    <div>
-      <input type="button" id="menu" value="Menu" ref={menuBtn} onClick={clickMenu}></input>
-      <input type="button" className="submenu1 disappear" ref={sub1Btn} onClick={clicksub1} onMouseEnter={detailSub1} onMouseLeave={detailSub1} onAnimationEnd={animSub1}></input>
-      <input type="button" className="submenu2 disappear" ref={sub2Btn} onClick={clicksub2} onMouseEnter={detailSub2} onMouseLeave={detailSub2} onAnimationEnd={animSub1}></input>
-      <input type="button" className="submenu3 disappear" ref={sub3Btn} onClick={clicksub3} onMouseEnter={detailMain} onMouseLeave={detailMain} onAnimationEnd={animSub1}></input>
-      <div id="M1Text" ref={M1Text}>Covid-19 Live</div>
-      <div id="M2Text" ref={M2Text}>Covid-19 World</div>
-      <div id="M3Text" ref={M3Text}>Main</div>
-      <div id="blur" ref={blurPage} onClick={clickMenu}></div>
+    <div className={NavCss}>
+      <input type="button" id={NavCss.menu} value="Menu" ref={menuBtn} onClick={clickMenu}></input>
+      <input type="button" className={`${NavCss.submenu1} ${NavCss["disappear"]}`} ref={sub1Btn} onClick={clicksub1} onMouseEnter={detailSub1} onMouseLeave={detailSub1} onAnimationEnd={animSub1}></input>
+      <input type="button" className={`${NavCss.submenu2} ${NavCss["disappear"]}`} ref={sub2Btn} onClick={clicksub2} onMouseEnter={detailSub2} onMouseLeave={detailSub2} onAnimationEnd={animSub1}></input>
+      <input type="button" className={`${NavCss.submenu3} ${NavCss["disappear"]}`} ref={sub3Btn} onClick={clicksub3} onMouseEnter={detailMain} onMouseLeave={detailMain} onAnimationEnd={animSub1}></input>
+      <div id={NavCss.M1Text} ref={M1Text}>Covid-19 Live</div>
+      <div id={NavCss.M2Text} ref={M2Text}>Covid-19 World</div>
+      <div id={NavCss.M3Text} ref={M3Text}>Main</div>
+      <div id={NavCss.blur} ref={blurPage} onClick={clickMenu}></div>
+      
       
     </div>
 
